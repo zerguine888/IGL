@@ -1,46 +1,30 @@
-from typing import Optional
-
 from src.tools import read_file
 from src.utils.logger import log_experiment, ActionType
 
 
 class AuditorAgent:
-    def __init__(self, google_api_key: str, model: str = "gemini-1.5") -> None:
-        """Create an AuditorAgent and configure the google.generativeai library.
-
-        Args:
-            google_api_key: API key for Google Gemini (loaded via dotenv by caller).
-            model: Model name to use when calling Gemini.
-        """
-        self.model = model
+    def __init__(self, google_api_key: str, model: str = "models/gemini-1.5"):
+        self.model_name = model
         self._genai = None
         try:
             import google.generativeai as genai  # type: ignore
             genai.configure(api_key=google_api_key)
             self._genai = genai
         except Exception:
-            # Library may be missing or configuration failed; keep agent usable for logging
             self._genai = None
 
     def _extract_text(self, resp) -> str:
-        # Best-effort extractor for various client return shapes
         try:
             if resp is None:
                 return ""
-            # dict-like
             if isinstance(resp, dict):
                 if "candidates" in resp and resp["candidates"]:
                     c = resp["candidates"][0]
                     return c.get("content") or c.get("text") or str(c)
-                if "output" in resp:
-                    out = resp["output"]
-                    if isinstance(out, dict):
-                        return out.get("text") or str(out)
-                for key in ("text", "content", "response"):
+                for key in ("text", "content", "response", "output"):
                     if key in resp:
                         return resp[key] if isinstance(resp[key], str) else str(resp[key])
 
-            # object-like
             for attr in ("text", "content", "output", "response", "candidates"):
                 if hasattr(resp, attr):
                     val = getattr(resp, attr)
@@ -60,41 +44,40 @@ class AuditorAgent:
             return str(resp)
 
     def analyze(self, file_path: str) -> str:
-        """Analyze the code at `file_path` using Gemini and return the analysis text.
-
-        The interaction (prompt and response) is logged via `src.utils.logger.log_experiment`
-        with `ActionType.ANALYSIS` and must include `input_prompt` and `output_response`.
-        """
         code = read_file(file_path)
-        prompt = f"Analyze this code and list bugs: {code}"
+        prompt = f"Analyze this code and list bugs:\n\n{code}"
 
-        analysis: str
+        analysis = ""
         status = "SUCCESS"
 
         if self._genai is None:
-            analysis = "<gemini-unavailable> google.generativeai library not configured or import failed."
+            analysis = "<gemini-unavailable> google.generativeai not installed or failed to configure."
             status = "FAILURE"
         else:
             try:
-                # Try common client shapes
                 if hasattr(self._genai, "generate_text"):
-                    resp = self._genai.generate_text(model=self.model, prompt=prompt)
+                    resp = self._genai.generate_text(model=self.model_name, prompt=prompt)
                 elif hasattr(self._genai, "chat") and hasattr(self._genai.chat, "create"):
-                    resp = self._genai.chat.create(model=self.model, messages=[{"role": "user", "content": prompt}])
+                    resp = self._genai.chat.create(model=self.model_name, messages=[{"role": "user", "content": prompt}])
                 else:
-                    # Fallback: attempt a generic call
-                    resp = self._genai.generate(model=self.model, prompt=prompt)  # type: ignore
+                    # Last resort: try a generic generate if available
+                    resp = getattr(self._genai, "generate", lambda *a, **k: None)(model=self.model_name, prompt=prompt)
 
                 analysis = self._extract_text(resp)
             except Exception as e:
-                analysis = f"<gemini-call-error> {e}"
+                analysis = f"Error during analysis: {e}"
                 status = "FAILURE"
 
-        details = {"input_prompt": prompt, "output_response": analysis}
+        # Logging obligatoire
         try:
-            log_experiment("AuditorAgent", self.model, ActionType.ANALYSIS, details, status)
+            log_experiment(
+                agent_name="AuditorAgent",
+                model_used=self.model_name,
+                action=ActionType.ANALYSIS,
+                details={"input_prompt": prompt, "output_response": analysis},
+                status=status,
+            )
         except Exception:
-            # Logging should not raise for the agent's caller; swallow errors
             pass
 
         return analysis

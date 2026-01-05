@@ -1,11 +1,323 @@
 [
-  {
-    "id": "9e82e9b0-9b43-4a78-af43-d5d5ef848a2f",
-    "timestamp": "2025-12-26T01:26:41.177789",
-    "agent": "System",
-    "model": "unknown",
-    "action": "STARTUP",
-    "details": "Target: ./sandbox",
-    "status": "INFO"
-  }
+    {
+        "id": "9e82e9b0-9b43-4a78-af43-d5d5ef848a2f",
+        "timestamp": "2025-12-26T01:26:41.177789",
+        "agent": "System",
+        "model": "unknown",
+        "action": "STARTUP",
+        "details": "Target: ./sandbox",
+        "status": "INFO"
+    },
+    {
+        "id": "abec53d8-b75a-4ce8-8bc4-494f2ac20957",
+        "timestamp": "2026-01-06T00:22:04.248325",
+        "agent": "System",
+        "model": "local",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "startup",
+            "output_response": "Target: ./sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "d3ea4fff-66ba-4a84-8fb1-65499a862c0e",
+        "timestamp": "2026-01-06T00:24:17.068167",
+        "agent": "System",
+        "model": "local",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "startup",
+            "output_response": "Target: ./sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "3bfd4f1b-7a6a-40a0-bb70-acd358a38726",
+        "timestamp": "2026-01-06T00:24:17.121576",
+        "agent": "AuditorAgent",
+        "model": "gemini-1.5",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs: def add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)",
+            "output_response": "<gemini-call-error> Model names should start with `models/` or `tunedModels/`, got: {name}"
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "3884267b-47c9-498f-91ae-5de21fbdc54f",
+        "timestamp": "2026-01-06T00:24:17.140104",
+        "agent": "FixerAgent",
+        "model": "gemini-1.5",
+        "action": "FIX",
+        "details": {
+            "input_prompt": "Fix this code def add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string) based on this plan <gemini-call-error> Model names should start with `models/` or `tunedModels/`, got: {name}. Output only the full python code",
+            "output_response": "<gemini-call-error> Model names should start with `models/` or `tunedModels/`, got: {name}"
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "0c65ca2e-ada7-430f-8844-920ac7ba3837",
+        "timestamp": "2026-01-06T00:32:34.266417",
+        "agent": "System",
+        "model": "local",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "startup",
+            "output_response": "Target: ./sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "eb543a19-7111-4b6b-8f97-03162a5db9ec",
+        "timestamp": "2026-01-06T00:32:35.001353",
+        "agent": "AuditorAgent",
+        "model": "models/gemini-1.5-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs: def add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)",
+            "output_response": "<gemini-call-error> 404 Requested entity was not found."
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "c9101976-a005-4e86-a052-f352d3ec3b0a",
+        "timestamp": "2026-01-06T00:32:35.129278",
+        "agent": "FixerAgent",
+        "model": "models/gemini-1.5-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": "Fix this code def add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string) based on this plan <gemini-call-error> 404 Requested entity was not found.. Output only the full python code",
+            "output_response": "<gemini-call-error> 404 Requested entity was not found."
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "283fe6e8-369b-45e9-940d-282c44b9b969",
+        "timestamp": "2026-01-06T00:32:35.272335",
+        "agent": "AuditorAgent",
+        "model": "models/gemini-1.5-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs: <gemini-call-error> 404 Requested entity was not found.",
+            "output_response": "<gemini-call-error> 404 Requested entity was not found."
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "78e98895-a4ad-4600-9525-a9ba8308123e",
+        "timestamp": "2026-01-06T00:32:35.395817",
+        "agent": "FixerAgent",
+        "model": "models/gemini-1.5-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": "Fix this code <gemini-call-error> 404 Requested entity was not found. based on this plan <gemini-call-error> 404 Requested entity was not found.. Output only the full python code",
+            "output_response": "<gemini-call-error> 404 Requested entity was not found."
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "8c354a1c-aab2-4573-9aef-ee2e587b35fe",
+        "timestamp": "2026-01-06T00:33:21.239098",
+        "agent": "System",
+        "model": "local",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "startup",
+            "output_response": "Target: ./sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "e9ef5425-4599-4a23-b2ed-415271efcf40",
+        "timestamp": "2026-01-06T00:33:21.724934",
+        "agent": "AuditorAgent",
+        "model": "models/gemini-1.5-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs: def add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)",
+            "output_response": "<gemini-call-error> 404 Requested entity was not found."
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "53a4ed8c-818a-4070-ac0c-b10459ad069c",
+        "timestamp": "2026-01-06T00:33:21.863417",
+        "agent": "FixerAgent",
+        "model": "models/gemini-1.5-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": "Fix this code def add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string) based on this plan <gemini-call-error> 404 Requested entity was not found.. Output only the full python code",
+            "output_response": "<gemini-call-error> 404 Requested entity was not found."
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "171c5d1e-0c22-4139-8a1f-e3762be1fa47",
+        "timestamp": "2026-01-06T00:40:54.359129",
+        "agent": "System",
+        "model": "local",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "startup",
+            "output_response": "Target: ./sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "a8dcc103-2eef-4f9b-be7b-dd82f1ce6d06",
+        "timestamp": "2026-01-06T00:40:54.763321",
+        "agent": "AuditorAgent",
+        "model": "models/gemini-1.5-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs:\n\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)",
+            "output_response": "Error during analysis: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods."
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "aeb3ea59-d469-4b0b-bb21-3c85c8d61568",
+        "timestamp": "2026-01-06T00:40:54.901655",
+        "agent": "FixerAgent",
+        "model": "models/gemini-1.5-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": "You are a Python expert. Fix the following code based on the analysis plan.\nPLAN:\nError during analysis: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.\n\nCODE:\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)\n\nOutput ONLY the fixed Python code without markdown blocks (```).",
+            "output_response": "# Error during fix: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods."
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "913c75ae-f21a-4993-a8a9-035976173da3",
+        "timestamp": "2026-01-06T00:45:05.995057",
+        "agent": "System",
+        "model": "local",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "startup",
+            "output_response": "Target: ./sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "0976d7eb-2adc-4997-8c40-b453dd0f1c94",
+        "timestamp": "2026-01-06T00:45:06.521966",
+        "agent": "AuditorAgent",
+        "model": "models/gemini-pro",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs:\n\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)",
+            "output_response": "Error during analysis: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods."
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "da0ef547-03e5-4e67-add5-08518596c57a",
+        "timestamp": "2026-01-06T00:45:06.651160",
+        "agent": "FixerAgent",
+        "model": "models/gemini-pro",
+        "action": "FIX",
+        "details": {
+            "input_prompt": "You are a Python expert. Fix the following code based on the analysis plan.\nPLAN:\nError during analysis: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.\n\nCODE:\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)\n\nOutput ONLY the fixed Python code without markdown blocks (```).",
+            "output_response": "# Error during fix: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods."
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "287b79ff-909c-4fd5-a1f2-3c3bf87c28e6",
+        "timestamp": "2026-01-06T00:51:34.532630",
+        "agent": "System",
+        "model": "local",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "startup",
+            "output_response": "Target: ./sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "2266c4bf-a4b0-4350-b5f8-5a1225206746",
+        "timestamp": "2026-01-06T00:51:34.532630",
+        "agent": "AuditorAgent",
+        "model": "models/gemini-1.5",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs:\n\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)",
+            "output_response": ""
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "75dcd009-26e3-4e4b-beb4-7fe82329d323",
+        "timestamp": "2026-01-06T00:51:34.569522",
+        "agent": "FixerAgent",
+        "model": "models/gemini-1.5",
+        "action": "FIX",
+        "details": {
+            "input_prompt": "You are a Python expert. Fix the following code based on the analysis plan.\nPLAN:\n\n\nCODE:\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)\n\nOutput ONLY the full python code",
+            "output_response": ""
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "9359b290-6e8b-4058-924b-0606dc64de1a",
+        "timestamp": "2026-01-06T00:51:34.595403",
+        "agent": "AuditorAgent",
+        "model": "models/gemini-1.5",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs:\n\n",
+            "output_response": ""
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "bdffb090-7b59-4f47-afa1-d17912cab526",
+        "timestamp": "2026-01-06T00:51:34.621270",
+        "agent": "FixerAgent",
+        "model": "models/gemini-1.5",
+        "action": "FIX",
+        "details": {
+            "input_prompt": "You are a Python expert. Fix the following code based on the analysis plan.\nPLAN:\n\n\nCODE:\n\n\nOutput ONLY the full python code",
+            "output_response": ""
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "abbe5fd4-f5e5-4a1d-98b8-c09a48bc23e8",
+        "timestamp": "2026-01-06T00:52:04.515648",
+        "agent": "System",
+        "model": "local",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "startup",
+            "output_response": "Target: ./sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "c5aa9cb6-f674-4d94-8d46-5b7b8ed95ae8",
+        "timestamp": "2026-01-06T00:52:04.541358",
+        "agent": "AuditorAgent",
+        "model": "models/gemini-1.5",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs:\n\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)",
+            "output_response": ""
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "df556429-a436-44a4-992a-3f58f806e92a",
+        "timestamp": "2026-01-06T00:52:04.565021",
+        "agent": "FixerAgent",
+        "model": "models/gemini-1.5",
+        "action": "FIX",
+        "details": {
+            "input_prompt": "You are a Python expert. Fix the following code based on the analysis plan.\nPLAN:\n\n\nCODE:\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)\n\nOutput ONLY the full python code",
+            "output_response": ""
+        },
+        "status": "SUCCESS"
+    }
 ]

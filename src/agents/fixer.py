@@ -1,12 +1,9 @@
-from typing import Optional
-
 from src.utils.logger import log_experiment, ActionType
 
 
 class FixerAgent:
-    def __init__(self, api_key: str, model: str = "gemini-1.5") -> None:
-        """Initialize FixerAgent and configure google.generativeai with `api_key`."""
-        self.model = model
+    def __init__(self, api_key: str, model: str = "models/gemini-1.5"):
+        self.model_name = model
         self._genai = None
         try:
             import google.generativeai as genai  # type: ignore
@@ -23,11 +20,7 @@ class FixerAgent:
                 if "candidates" in resp and resp["candidates"]:
                     c = resp["candidates"][0]
                     return c.get("content") or c.get("text") or str(c)
-                if "output" in resp:
-                    out = resp["output"]
-                    if isinstance(out, dict):
-                        return out.get("text") or str(out)
-                for key in ("text", "content", "response"):
+                for key in ("text", "content", "response", "output"):
                     if key in resp:
                         return resp[key] if isinstance(resp[key], str) else str(resp[key])
 
@@ -50,36 +43,43 @@ class FixerAgent:
             return str(resp)
 
     def fix(self, original_code: str, analysis_plan: str) -> str:
-        """Request Gemini to fix `original_code` according to `analysis_plan`.
-
-        Logs the interaction with `log_experiment` using `ActionType.FIX` and
-        returns the fixed code as a string.
-        """
-        prompt = f"Fix this code {original_code} based on this plan {analysis_plan}. Output only the full python code"
+        prompt = (
+            f"You are a Python expert. Fix the following code based on the analysis plan.\n"
+            f"PLAN:\n{analysis_plan}\n\n"
+            f"CODE:\n{original_code}\n\n"
+            f"Output ONLY the full python code"
+        )
 
         fixed_code = ""
         status = "SUCCESS"
 
         if self._genai is None:
-            fixed_code = "<gemini-unavailable> google.generativeai library not configured or import failed."
+            fixed_code = "<gemini-unavailable> google.generativeai not installed or failed to configure."
             status = "FAILURE"
         else:
             try:
                 if hasattr(self._genai, "generate_text"):
-                    resp = self._genai.generate_text(model=self.model, prompt=prompt)
+                    resp = self._genai.generate_text(model=self.model_name, prompt=prompt)
                 elif hasattr(self._genai, "chat") and hasattr(self._genai.chat, "create"):
-                    resp = self._genai.chat.create(model=self.model, messages=[{"role": "user", "content": prompt}])
+                    resp = self._genai.chat.create(model=self.model_name, messages=[{"role": "user", "content": prompt}])
                 else:
-                    resp = self._genai.generate(model=self.model, prompt=prompt)  # type: ignore
+                    resp = getattr(self._genai, "generate", lambda *a, **k: None)(model=self.model_name, prompt=prompt)
 
                 fixed_code = self._extract_text(resp)
+                # basic cleanup
+                fixed_code = fixed_code.replace("```python", "").replace("```", "").strip()
             except Exception as e:
-                fixed_code = f"<gemini-call-error> {e}"
+                fixed_code = f"# Error during fix: {e}"
                 status = "FAILURE"
 
-        details = {"input_prompt": prompt, "output_response": fixed_code}
         try:
-            log_experiment("FixerAgent", self.model, ActionType.FIX, details, status)
+            log_experiment(
+                agent_name="FixerAgent",
+                model_used=self.model_name,
+                action=ActionType.FIX,
+                details={"input_prompt": prompt, "output_response": fixed_code},
+                status=status,
+            )
         except Exception:
             pass
 
