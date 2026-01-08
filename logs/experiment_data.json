@@ -319,5 +319,761 @@
             "output_response": ""
         },
         "status": "SUCCESS"
+    },
+    {
+        "id": "4aa17b35-5f9a-4e2a-a991-fcd5f1abdfcf",
+        "timestamp": "2026-01-08T11:13:54.267750",
+        "agent": "System",
+        "model": "local",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "startup",
+            "output_response": "Target: ./sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "352a19cd-e1e9-4f2f-86c7-a91f6856c3ae",
+        "timestamp": "2026-01-08T11:13:54.285804",
+        "agent": "AuditorAgent",
+        "model": "models/gemini-1.5",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs:\n\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)",
+            "output_response": ""
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "7a1df031-9a4a-4875-a1f4-6cc8b16a1d14",
+        "timestamp": "2026-01-08T11:13:54.306007",
+        "agent": "FixerAgent",
+        "model": "models/gemini-1.5",
+        "action": "FIX",
+        "details": {
+            "input_prompt": "You are a Python expert. Fix the following code based on the analysis plan.\nPLAN:\n\n\nCODE:\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)\n\nOutput ONLY the full python code",
+            "output_response": ""
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "d3d07ef9-169c-4e38-bcd3-9fe88741e1f6",
+        "timestamp": "2026-01-08T11:22:18.472391",
+        "agent": "System",
+        "model": "local",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "startup",
+            "output_response": "Target: ./sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "6fcc06f4-ccbd-405c-bed3-be6cda9eec13",
+        "timestamp": "2026-01-08T11:22:19.937780",
+        "agent": "AuditorAgent",
+        "model": "gemini-1.5-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs:\n\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)",
+            "output_response": "Error during analysis: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods."
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "6c4de324-ae35-459d-89a1-3e2ef20acb45",
+        "timestamp": "2026-01-08T11:22:20.076674",
+        "agent": "FixerAgent",
+        "model": "gemini-1.5-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": "You are a Python expert. Fix the following code based on the analysis plan.\nPLAN:\nError during analysis: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.\n\nCODE:\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)\n\nOutput ONLY the full python code",
+            "output_response": "# Error during fix: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods."
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "37ca5121-64cd-419b-9c67-692daf3e6a51",
+        "timestamp": "2026-01-08T11:26:28.766136",
+        "agent": "System",
+        "model": "local",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "startup",
+            "output_response": "Target: ./sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "90f0efb8-bd87-4c25-8771-6c37605385a6",
+        "timestamp": "2026-01-08T11:26:29.409392",
+        "agent": "AuditorAgent",
+        "model": "gemini-1.5-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs:\n\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)",
+            "output_response": "Error during analysis: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods."
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "5911215a-a469-45cb-89d4-6605e2e5ee6e",
+        "timestamp": "2026-01-08T11:26:29.571895",
+        "agent": "FixerAgent",
+        "model": "gemini-1.5-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": "You are a Python expert. Fix the following code based on the analysis plan.\nPLAN:\nError during analysis: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.\n\nCODE:\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)\n\nOutput ONLY the full python code",
+            "output_response": "# Error during fix: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods."
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "7fe95dc2-576f-445b-971e-0689a2b0bb01",
+        "timestamp": "2026-01-08T11:26:29.726949",
+        "agent": "AuditorAgent",
+        "model": "gemini-1.5-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs:\n\n# Error during fix: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.",
+            "output_response": "Error during analysis: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods."
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "233aa976-2420-455d-b228-ecb33d9b3f1c",
+        "timestamp": "2026-01-08T11:26:29.886238",
+        "agent": "FixerAgent",
+        "model": "gemini-1.5-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": "You are a Python expert. Fix the following code based on the analysis plan.\nPLAN:\nError during analysis: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.\n\nCODE:\n# Error during fix: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.\n\nOutput ONLY the full python code",
+            "output_response": "# Error during fix: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods."
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "c2831162-f513-404a-8c8b-4e4ad3fb0026",
+        "timestamp": "2026-01-08T11:27:46.907920",
+        "agent": "System",
+        "model": "local",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "startup",
+            "output_response": "Target: ./sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "1a7abdbe-e891-4bc3-adb4-5ed549ea4591",
+        "timestamp": "2026-01-08T11:27:47.413015",
+        "agent": "AuditorAgent",
+        "model": "gemini-2.0-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs:\n\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)",
+            "output_response": "Error during analysis: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. "
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "92a674d4-68e7-4fae-9a5b-0676e415759c",
+        "timestamp": "2026-01-08T11:27:47.665495",
+        "agent": "FixerAgent",
+        "model": "gemini-2.0-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": "You are a Python expert. Fix the following code based on the analysis plan.\nPLAN:\nError during analysis: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n\nCODE:\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)\n\nOutput ONLY the full python code",
+            "output_response": "# Error during fix: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. "
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "88817f50-de87-4216-940f-de703cb6bc4a",
+        "timestamp": "2026-01-08T11:27:47.876373",
+        "agent": "AuditorAgent",
+        "model": "gemini-2.0-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs:\n\n# Error during fix: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. ",
+            "output_response": "Error during analysis: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. "
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "57e1a881-b415-4bc7-b506-7d04b851c3a4",
+        "timestamp": "2026-01-08T11:27:48.023317",
+        "agent": "FixerAgent",
+        "model": "gemini-2.0-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": "You are a Python expert. Fix the following code based on the analysis plan.\nPLAN:\nError during analysis: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n\nCODE:\n# Error during fix: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n\nOutput ONLY the full python code",
+            "output_response": "# Error during fix: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. "
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "9bca88bf-5cd7-4a95-afb4-1b4608a3c9e2",
+        "timestamp": "2026-01-08T11:27:48.187679",
+        "agent": "AuditorAgent",
+        "model": "gemini-2.0-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs:\n\n# Error during fix: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. ",
+            "output_response": "Error during analysis: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. "
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "74f53acd-139c-43fa-a5bb-467c39a68e9a",
+        "timestamp": "2026-01-08T11:27:48.346788",
+        "agent": "FixerAgent",
+        "model": "gemini-2.0-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": "You are a Python expert. Fix the following code based on the analysis plan.\nPLAN:\nError during analysis: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n\nCODE:\n# Error during fix: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n\nOutput ONLY the full python code",
+            "output_response": "# Error during fix: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. "
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "d3e815b6-1675-4e61-8db1-8bc7c4f5372e",
+        "timestamp": "2026-01-08T11:31:04.689073",
+        "agent": "System",
+        "model": "local",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "startup",
+            "output_response": "Target: ./sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "031569ca-1245-4e6e-8487-9626d9c0f740",
+        "timestamp": "2026-01-08T11:31:05.273362",
+        "agent": "AuditorAgent",
+        "model": "gemini-2.0-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs:\n\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)",
+            "output_response": "Error during analysis: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. "
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "f2cd2afc-7c7a-4e62-a0e6-f327e3d4d0e9",
+        "timestamp": "2026-01-08T11:31:05.434266",
+        "agent": "FixerAgent",
+        "model": "gemini-2.0-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": "You are a Python expert. Fix the following code based on the analysis plan.\nPLAN:\nError during analysis: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n\nCODE:\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)\n\nOutput ONLY the full python code",
+            "output_response": "# Error during fix: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. "
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "98c500c1-0e81-469a-9a5a-c5e2d2b3ab18",
+        "timestamp": "2026-01-08T11:32:56.892166",
+        "agent": "System",
+        "model": "local",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "startup",
+            "output_response": "Target: ./sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "2205115f-93bf-4d57-98d0-06ac4ebfc6c4",
+        "timestamp": "2026-01-08T11:32:57.555929",
+        "agent": "AuditorAgent",
+        "model": "gemini-2.0-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs:\n\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)",
+            "output_response": "Error during analysis: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. "
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "890e26b3-5084-4e04-8858-77ca50d84495",
+        "timestamp": "2026-01-08T11:32:57.770584",
+        "agent": "FixerAgent",
+        "model": "gemini-2.0-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": "You are a Python expert. Fix the following code based on the analysis plan.\nPLAN:\nError during analysis: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n\nCODE:\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)\n\nOutput ONLY the full python code",
+            "output_response": "# Error during fix: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. "
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "de8fe78e-f06d-4cf0-a66e-8a09dfc17ff2",
+        "timestamp": "2026-01-08T11:39:53.445098",
+        "agent": "System",
+        "model": "local",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "startup",
+            "output_response": "Target: ./sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "ce676089-81e2-46be-9821-b2c0171a9a46",
+        "timestamp": "2026-01-08T11:39:54.390671",
+        "agent": "AuditorAgent",
+        "model": "gemini-2.0-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs:\n\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)",
+            "output_response": "Error during analysis: 400 API key not valid. Please pass a valid API key. [reason: \"API_KEY_INVALID\"\ndomain: \"googleapis.com\"\nmetadata {\n  key: \"service\"\n  value: \"generativelanguage.googleapis.com\"\n}\n, locale: \"en-US\"\nmessage: \"API key not valid. Please pass a valid API key.\"\n]"
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "785cb8dc-65c4-40b1-8a1d-87d134020830",
+        "timestamp": "2026-01-08T11:39:54.538657",
+        "agent": "FixerAgent",
+        "model": "gemini-2.0-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": "You are a Python expert. Fix the following code based on the analysis plan.\nPLAN:\nError during analysis: 400 API key not valid. Please pass a valid API key. [reason: \"API_KEY_INVALID\"\ndomain: \"googleapis.com\"\nmetadata {\n  key: \"service\"\n  value: \"generativelanguage.googleapis.com\"\n}\n, locale: \"en-US\"\nmessage: \"API key not valid. Please pass a valid API key.\"\n]\n\nCODE:\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)\n\nOutput ONLY the full python code",
+            "output_response": "# Error during fix: 400 API key not valid. Please pass a valid API key. [reason: \"API_KEY_INVALID\"\ndomain: \"googleapis.com\"\nmetadata {\n  key: \"service\"\n  value: \"generativelanguage.googleapis.com\"\n}\n, locale: \"en-US\"\nmessage: \"API key not valid. Please pass a valid API key.\"\n]"
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "fa6ce474-9d9d-4cf8-9388-413a9b075cf2",
+        "timestamp": "2026-01-08T11:50:39.522963",
+        "agent": "System",
+        "model": "local",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "startup",
+            "output_response": "Target: ./sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "552dfeef-5298-48e8-9f51-2d859a1238ef",
+        "timestamp": "2026-01-08T11:50:40.563532",
+        "agent": "AuditorAgent",
+        "model": "gemini-2.0-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs:\n\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)",
+            "output_response": "Error during analysis: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. "
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "389c4ffc-1066-48fd-8424-56bf8b4992b9",
+        "timestamp": "2026-01-08T11:50:40.760322",
+        "agent": "FixerAgent",
+        "model": "gemini-2.0-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": "You are a Python expert. Fix the following code based on the analysis plan.\nPLAN:\nError during analysis: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n\nCODE:\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)\n\nOutput ONLY the full python code",
+            "output_response": "# Error during fix: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. "
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "027a309c-7052-464a-82ea-b66faa1e76b0",
+        "timestamp": "2026-01-08T11:53:29.211383",
+        "agent": "System",
+        "model": "local",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "startup",
+            "output_response": "Target: ./sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "8d65f35f-6158-4ef5-9e0f-cc0ee5d1b9b1",
+        "timestamp": "2026-01-08T11:53:29.724948",
+        "agent": "AuditorAgent",
+        "model": "gemini-2.0-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs:\n\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)",
+            "output_response": "Error during analysis: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\nPlease retry in 30.525687647s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\"\n  quota_id: \"GenerateContentInputTokensPerModelPerMinute-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\n, retry_delay {\n  seconds: 30\n}\n]"
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "1a080098-a0c2-43b4-bc62-3de4165e9936",
+        "timestamp": "2026-01-08T11:53:29.922975",
+        "agent": "FixerAgent",
+        "model": "gemini-2.0-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": "You are a Python expert. Fix the following code based on the analysis plan.\nPLAN:\nError during analysis: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\nPlease retry in 30.525687647s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\"\n  quota_id: \"GenerateContentInputTokensPerModelPerMinute-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\n, retry_delay {\n  seconds: 30\n}\n]\n\nCODE:\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)\n\nOutput ONLY the full python code",
+            "output_response": "# Error during fix: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\nPlease retry in 30.347307722s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\"\n  quota_id: \"GenerateContentInputTokensPerModelPerMinute-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\n, retry_delay {\n  seconds: 30\n}\n]"
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "c85e82fc-5bb2-4de1-a78c-15e17cbcb5fb",
+        "timestamp": "2026-01-08T11:58:01.690571",
+        "agent": "System",
+        "model": "local",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "startup",
+            "output_response": "Target: ./sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "ed366c15-6253-41c4-87d2-4cc101cf136e",
+        "timestamp": "2026-01-08T13:24:06.198047",
+        "agent": "System",
+        "model": "local",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "startup",
+            "output_response": "Target: ./sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "97423eeb-0911-4441-b337-a0fbc9389329",
+        "timestamp": "2026-01-08T13:24:06.898240",
+        "agent": "AuditorAgent",
+        "model": "gemini-2.0-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs:\n\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)",
+            "output_response": "Error during analysis: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\nPlease retry in 53.678545507s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\"\n  quota_id: \"GenerateContentInputTokensPerModelPerMinute-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\n, retry_delay {\n  seconds: 53\n}\n]"
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "c08de3a5-18d2-4ed1-b781-5147c270d09b",
+        "timestamp": "2026-01-08T13:24:07.046526",
+        "agent": "FixerAgent",
+        "model": "gemini-2.0-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": "You are a Python expert. Fix the following code based on the analysis plan.\nPLAN:\nError during analysis: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\nPlease retry in 53.678545507s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\"\n  quota_id: \"GenerateContentInputTokensPerModelPerMinute-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\n, retry_delay {\n  seconds: 53\n}\n]\n\nCODE:\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)\n\nOutput ONLY the full python code",
+            "output_response": "# Error during fix: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\nPlease retry in 53.320570124s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\"\n  quota_id: \"GenerateContentInputTokensPerModelPerMinute-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\n, retry_delay {\n  seconds: 53\n}\n]"
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "dabdac16-44fb-45f9-aa35-8c2afa91c2f9",
+        "timestamp": "2026-01-08T13:24:07.214505",
+        "agent": "AuditorAgent",
+        "model": "gemini-2.0-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs:\n\n# Error during fix: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\nPlease retry in 53.320570124s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\"\n  quota_id: \"GenerateContentInputTokensPerModelPerMinute-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\n, retry_delay {\n  seconds: 53\n}\n]",
+            "output_response": "Error during analysis: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\nPlease retry in 53.16130237s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\"\n  quota_id: \"GenerateContentInputTokensPerModelPerMinute-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\n, retry_delay {\n  seconds: 53\n}\n]"
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "2dbcd054-139a-456d-b842-fc2cdaec6143",
+        "timestamp": "2026-01-08T13:24:07.359965",
+        "agent": "FixerAgent",
+        "model": "gemini-2.0-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": "You are a Python expert. Fix the following code based on the analysis plan.\nPLAN:\nError during analysis: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\nPlease retry in 53.16130237s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\"\n  quota_id: \"GenerateContentInputTokensPerModelPerMinute-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\n, retry_delay {\n  seconds: 53\n}\n]\n\nCODE:\n# Error during fix: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\nPlease retry in 53.320570124s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\"\n  quota_id: \"GenerateContentInputTokensPerModelPerMinute-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\n, retry_delay {\n  seconds: 53\n}\n]\n\nOutput ONLY the full python code",
+            "output_response": "# Error during fix: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\nPlease retry in 53.017935815s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\"\n  quota_id: \"GenerateContentInputTokensPerModelPerMinute-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\n, retry_delay {\n  seconds: 53\n}\n]"
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "0a223f6d-1387-4be0-a604-0559800b8a1b",
+        "timestamp": "2026-01-08T13:27:24.011813",
+        "agent": "System",
+        "model": "local",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "startup",
+            "output_response": "Target: ./sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "727f90a0-bdf6-4252-a20d-fc4c9aba2d51",
+        "timestamp": "2026-01-08T13:27:24.454203",
+        "agent": "AuditorAgent",
+        "model": "gemini-2.0-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs:\n\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)",
+            "output_response": "Error during analysis: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\nPlease retry in 35.925851567s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\"\n  quota_id: \"GenerateContentInputTokensPerModelPerMinute-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\n, retry_delay {\n  seconds: 35\n}\n]"
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "d0918975-2bc7-4c7a-9c0c-3fd03cd3a0b3",
+        "timestamp": "2026-01-08T13:27:24.610032",
+        "agent": "FixerAgent",
+        "model": "gemini-2.0-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": "You are a Python expert. Fix the following code based on the analysis plan.\nPLAN:\nError during analysis: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\nPlease retry in 35.925851567s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\"\n  quota_id: \"GenerateContentInputTokensPerModelPerMinute-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\n, retry_delay {\n  seconds: 35\n}\n]\n\nCODE:\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)\n\nOutput ONLY the full python code",
+            "output_response": "# Error during fix: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\nPlease retry in 35.769346235s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\"\n  quota_id: \"GenerateContentInputTokensPerModelPerMinute-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\n, retry_delay {\n  seconds: 35\n}\n]"
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "d16aa24f-0b21-4069-bc82-b9b1e40a3270",
+        "timestamp": "2026-01-08T13:35:29.615240",
+        "agent": "System",
+        "model": "local",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "startup",
+            "output_response": "Target: ./sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "38384a93-7426-42e9-9eec-bfdb8c3ef289",
+        "timestamp": "2026-01-08T13:35:29.617052",
+        "agent": "AuditorAgent",
+        "model": "gemini-2.0-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs:\n\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)",
+            "output_response": "<gemini-unavailable> google.generativeai not installed or failed to configure."
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "69a72cac-e3e7-402c-988c-550f69e92f76",
+        "timestamp": "2026-01-08T13:35:29.641019",
+        "agent": "FixerAgent",
+        "model": "gemini-2.0-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": "You are a Python expert. Fix the following code based on the analysis plan.\nPLAN:\n<gemini-unavailable> google.generativeai not installed or failed to configure.\n\nCODE:\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)\n\nOutput ONLY the full python code",
+            "output_response": "<gemini-unavailable> google.generativeai not installed or failed to configure."
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "e1fd64d8-8caa-42ba-af9f-a1635ba3c82c",
+        "timestamp": "2026-01-08T13:36:46.637945",
+        "agent": "System",
+        "model": "local",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "startup",
+            "output_response": "Target: ./sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "54651b61-dd65-4566-98f5-1838357a77e0",
+        "timestamp": "2026-01-08T13:36:47.233512",
+        "agent": "AuditorAgent",
+        "model": "gemini-2.0-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs:\n\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)",
+            "output_response": "Error during analysis: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\nPlease retry in 13.16023032s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\"\n  quota_id: \"GenerateContentInputTokensPerModelPerMinute-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\n, retry_delay {\n  seconds: 13\n}\n]"
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "75b0fa8e-e644-4a88-8318-9a49c42e073b",
+        "timestamp": "2026-01-08T13:36:47.373189",
+        "agent": "FixerAgent",
+        "model": "gemini-2.0-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": "You are a Python expert. Fix the following code based on the analysis plan.\nPLAN:\nError during analysis: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\nPlease retry in 13.16023032s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\"\n  quota_id: \"GenerateContentInputTokensPerModelPerMinute-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\n, retry_delay {\n  seconds: 13\n}\n]\n\nCODE:\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)\n\nOutput ONLY the full python code",
+            "output_response": "# Error during fix: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\nPlease retry in 13.0075284s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\"\n  quota_id: \"GenerateContentInputTokensPerModelPerMinute-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\n, retry_delay {\n  seconds: 13\n}\n]"
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "90d9a79c-3509-4e66-a3aa-b760f5fb3c9b",
+        "timestamp": "2026-01-08T13:36:47.542017",
+        "agent": "AuditorAgent",
+        "model": "gemini-2.0-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs:\n\n# Error during fix: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\nPlease retry in 13.0075284s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\"\n  quota_id: \"GenerateContentInputTokensPerModelPerMinute-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\n, retry_delay {\n  seconds: 13\n}\n]",
+            "output_response": "Error during analysis: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\nPlease retry in 12.841500807s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\"\n  quota_id: \"GenerateContentInputTokensPerModelPerMinute-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\n, retry_delay {\n  seconds: 12\n}\n]"
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "fc4bdd47-2bbc-44fd-bdae-a3e222d6dad2",
+        "timestamp": "2026-01-08T13:36:47.690516",
+        "agent": "FixerAgent",
+        "model": "gemini-2.0-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": "You are a Python expert. Fix the following code based on the analysis plan.\nPLAN:\nError during analysis: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\nPlease retry in 12.841500807s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\"\n  quota_id: \"GenerateContentInputTokensPerModelPerMinute-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\n, retry_delay {\n  seconds: 12\n}\n]\n\nCODE:\n# Error during fix: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\nPlease retry in 13.0075284s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\"\n  quota_id: \"GenerateContentInputTokensPerModelPerMinute-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\n, retry_delay {\n  seconds: 13\n}\n]\n\nOutput ONLY the full python code",
+            "output_response": "# Error during fix: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\nPlease retry in 12.697400531s. [links {\n  description: \"Learn more about Gemini API quotas\"\n  url: \"https://ai.google.dev/gemini-api/docs/rate-limits\"\n}\n, violations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerDayPerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_requests\"\n  quota_id: \"GenerateRequestsPerMinutePerProjectPerModel-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\nviolations {\n  quota_metric: \"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count\"\n  quota_id: \"GenerateContentInputTokensPerModelPerMinute-FreeTier\"\n  quota_dimensions {\n    key: \"model\"\n    value: \"gemini-2.0-flash\"\n  }\n  quota_dimensions {\n    key: \"location\"\n    value: \"global\"\n  }\n}\n, retry_delay {\n  seconds: 12\n}\n]"
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "7f899bb1-f2de-4e54-8da4-889511dcf8d4",
+        "timestamp": "2026-01-08T13:41:52.474576",
+        "agent": "System",
+        "model": "local",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "startup",
+            "output_response": "Target: ./sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "af8ddb0a-4de2-4b9c-b5f3-e617f54947cf",
+        "timestamp": "2026-01-08T13:41:52.991112",
+        "agent": "AuditorAgent",
+        "model": "models/gemini-1.5-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs:\n\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)",
+            "output_response": "Error during analysis: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods."
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "1f258255-736d-4a21-81f2-347f90fe685d",
+        "timestamp": "2026-01-08T13:41:53.127891",
+        "agent": "FixerAgent",
+        "model": "models/gemini-1.5-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": "You are a Python expert. Fix the following code based on the analysis plan.\nPLAN:\nError during analysis: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.\n\nCODE:\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)\n\nOutput ONLY the fixed Python code without markdown blocks.",
+            "output_response": "# Error during fix: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods."
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "9a5ccdc3-6863-4796-94bd-f84b9bacb3e0",
+        "timestamp": "2026-01-08T13:49:29.383682",
+        "agent": "System",
+        "model": "local",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "startup",
+            "output_response": "Target: ./sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "5a35a68a-c5ca-44aa-adc1-1afa199d5f98",
+        "timestamp": "2026-01-08T13:49:43.203791",
+        "agent": "AuditorAgent",
+        "model": "models/gemini-2.5-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs:\n\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)",
+            "output_response": "Let's analyze the provided Python code and list the bugs:\n\n## Bugs Found:\n\n1.  **`ZeroDivisionError` in `divide` function:**\n    *   **Description:** The `divide` function does not handle the case where the divisor `b` is zero. If `b` is `0`, calling `divide(a, 0)` will result in a `ZeroDivisionError` at runtime. The comment `# Pas de gestion de la division par zéro !` explicitly points this out.\n    *   **Affected Line:** `return a/b` (within `divide` function)\n\n2.  **`TypeError` when calling `add` with incompatible types:**\n    *   **Description:** The `print` statement attempts to call `add(10, \"5\")`. The `add` function then tries to execute `10 + \"5\"`. Python's `+` operator cannot directly add an integer (`int`) and a string (`str`). This will raise a `TypeError: unsupported operand type(s) for +: 'int' and 'str'`.\n    *   **Affected Line:** `print(\"Resultat: \" + add(10, \"5\"))`\n\n3.  **Lack of Robust Type Validation (for both functions):**\n    *   **Description:** While not strictly a bug that crashes in all scenarios, both `add` and `divide` implicitly rely on Python's dynamic typing and the operators (`+`, `/`) to handle type checking.\n        *   For `add`: As seen in bug #2, passing incompatible types like `int` and `str` results in a `TypeError`.\n        *   For `divide`: Passing non-numeric types (e.g., `divide(\"hello\", 2)`) would also result in a `TypeError`.\n    *   **Impact:** This makes the functions less robust and more prone to runtime errors if users provide unexpected input types. Ideally, functions that expect specific data types should either check them or clearly document their expected input types.\n    *   **Affected Lines:** General to both `add(a,b)` and `divide(a,b)`.\n\n---\n\nIn summary, the most critical bugs are the `ZeroDivisionError` in `divide` and the `TypeError` caused by incorrect usage of `add` in the `print` statement. The lack of explicit type validation is a design weakness that contributes to these runtime errors."
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "05800c99-4f83-460f-ae7e-563cffb828f5",
+        "timestamp": "2026-01-08T13:50:18.381473",
+        "agent": "FixerAgent",
+        "model": "models/gemini-2.5-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": "You are a Python expert. Fix the following code based on the analysis plan.\nPLAN:\nLet's analyze the provided Python code and list the bugs:\n\n## Bugs Found:\n\n1.  **`ZeroDivisionError` in `divide` function:**\n    *   **Description:** The `divide` function does not handle the case where the divisor `b` is zero. If `b` is `0`, calling `divide(a, 0)` will result in a `ZeroDivisionError` at runtime. The comment `# Pas de gestion de la division par zéro !` explicitly points this out.\n    *   **Affected Line:** `return a/b` (within `divide` function)\n\n2.  **`TypeError` when calling `add` with incompatible types:**\n    *   **Description:** The `print` statement attempts to call `add(10, \"5\")`. The `add` function then tries to execute `10 + \"5\"`. Python's `+` operator cannot directly add an integer (`int`) and a string (`str`). This will raise a `TypeError: unsupported operand type(s) for +: 'int' and 'str'`.\n    *   **Affected Line:** `print(\"Resultat: \" + add(10, \"5\"))`\n\n3.  **Lack of Robust Type Validation (for both functions):**\n    *   **Description:** While not strictly a bug that crashes in all scenarios, both `add` and `divide` implicitly rely on Python's dynamic typing and the operators (`+`, `/`) to handle type checking.\n        *   For `add`: As seen in bug #2, passing incompatible types like `int` and `str` results in a `TypeError`.\n        *   For `divide`: Passing non-numeric types (e.g., `divide(\"hello\", 2)`) would also result in a `TypeError`.\n    *   **Impact:** This makes the functions less robust and more prone to runtime errors if users provide unexpected input types. Ideally, functions that expect specific data types should either check them or clearly document their expected input types.\n    *   **Affected Lines:** General to both `add(a,b)` and `divide(a,b)`.\n\n---\n\nIn summary, the most critical bugs are the `ZeroDivisionError` in `divide` and the `TypeError` caused by incorrect usage of `add` in the `print` statement. The lack of explicit type validation is a design weakness that contributes to these runtime errors.\n\nCODE:\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)\n\nOutput ONLY the fixed Python code without markdown blocks.",
+            "output_response": ""
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "c2870dd3-bb75-4274-95ad-04b5567b1529",
+        "timestamp": "2026-01-08T13:50:59.181114",
+        "agent": "AuditorAgent",
+        "model": "models/gemini-2.5-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs:\n\n",
+            "output_response": "This Python script is designed to fetch data from a URL, process it, and save it to a JSON file, with logging enabled. While generally well-structured, there are several potential bugs and areas for improvement in terms of robustness and error handling.\n\nHere's an analysis of potential bugs:\n\n1.  **`fetch_data` doesn't handle non-JSON responses:**\n    *   **Location:** `fetch_data` function, line `data = response.json()`\n    *   **Problem:** The `response.json()` method will raise a `json.decoder.JSONDecodeError` if the HTTP response body is not valid JSON (e.g., plain text, HTML, or malformed JSON). The current `except requests.exceptions.RequestException` block does *not* catch `JSONDecodeError`, leading to an unhandled crash if the server returns non-JSON data.\n    *   **Fix:** Add `except json.decoder.JSONDecodeError as e:` to catch this specific error.\n\n2.  **`process_data` is a no-op placeholder:**\n    *   **Location:** `process_data` function\n    *   **Problem:** The function `process_data` currently just returns the input `data` unchanged. While the comment `In a real scenario, this function would transform or filter the data.` indicates its intended purpose, as implemented, it serves no functional role. This isn't a *code crash* bug, but a *functional bug* or *missing feature* relative to its implied purpose.\n    *   **Fix:** Implement the actual data processing logic as required. If there's truly no processing needed, the function is redundant and could be removed, directly passing `data` from `fetch_data` to `save_data`.\n\n3.  **`save_data` doesn't handle non-JSON-serializable data:**\n    *   **Location:** `save_data` function, line `json.dump(data, f, indent=4)`\n    *   **Problem:** The `json.dump()` method will raise a `TypeError` if the `data` contains objects that cannot be natively serialized to JSON (e.g., Python `set` objects, custom class instances without a custom encoder, `datetime` objects without specific formatting). The current `except IOError` block does *not* catch `TypeError`, leading to a crash.\n    *   **Fix:** Add `except TypeError as e:` to catch serialization errors.\n\n4.  **Lack of comprehensive top-level error handling in `main`:**\n    *   **Location:** `main` function\n    *   **Problem:** While individual functions have `try...except` blocks, the `main` function itself doesn't have an overarching `try...except` block. If an unexpected error occurs outside the specific error handling in `fetch_data`, `save_data`, or during logging setup, the program will crash ungracefully without proper logging of the critical error.\n    *   **Fix:** Wrap the entire logic within `main` in a `try...except Exception as e:` block to catch any unforeseen runtime errors and log them.\n\n5.  **(Minor/Robustness) `process_data` doesn't explicitly handle `None` input:**\n    *   **Location:** `process_data` function\n    *   **Problem:** If `fetch_data` fails and returns `None`, `process_data(None)` will be called. It currently just returns `None`. While this propagates correctly to `save_data`, it might be more robust for `process_data` to explicitly check for `None` and perhaps log a warning or raise an error if processing an empty or invalid dataset is not intended.\n    *   **Fix:** Add an explicit `if data is None:` check in `process_data` to handle this scenario, perhaps logging a warning.\n\n6.  **(Minor/Robustness) Directory existence for `LOG_FILE` and output JSON file:**\n    *   **Location:** `configure_logging`, `save_data`\n    *   **Problem:** The code assumes that the directory specified in `LOG_FILE` (e.g., `logs/`) and for the output JSON file already exists. If the directory `logs/` doesn't exist, `logging.FileHandler` might fail (though `logging.basicConfig` often creates the file if it doesn't exist, it usually doesn't create parent directories). Similarly, if `filename` for `save_data` includes a path that doesn't exist, `open()` will raise an `IOError` (or `FileNotFoundError`, which is a subclass) for the output data file.\n    *   **Fix:** Use `os.makedirs(os.path.dirname(LOG_FILE), exist_ok=True)` before `logging.basicConfig` and `os.makedirs(os.path.dirname(filename), exist_ok=True)` before `open(filename, 'w')` in `save_data`.\n\nBy addressing these points, the script will become significantly more robust and resilient to various error conditions."
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "edbf8691-60e4-4f97-ba4b-e37850b14f82",
+        "timestamp": "2026-01-08T13:53:01.125230",
+        "agent": "System",
+        "model": "local",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "startup",
+            "output_response": "Target: ./sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "52b2cfe9-af79-4517-8d32-017ac5e109c3",
+        "timestamp": "2026-01-08T13:53:08.796417",
+        "agent": "AuditorAgent",
+        "model": "models/gemini-2.5-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs:\n\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)",
+            "output_response": "Let's break down the code and identify the bugs.\n\n## Bugs Analysis\n\n1.  **Type Error in `add` function call**\n    *   **Description:** The `add` function is called with an integer (`10`) and a string (`\"5\"`). Python's `+` operator for `int` and `str` types results in a `TypeError` when you try to add them directly. The `add` function itself doesn't validate input types, allowing this error to propagate.\n    *   **Code Line:** `print(\"Resultat: \" + add(10, \"5\"))`\n    *   **Error Message (expected):** `TypeError: unsupported operand type(s) for +: 'int' and 'str'`\n    *   **Impact:** The program will crash at this line.\n    *   **Correction Idea:**\n        *   Ensure arguments passed to `add` are of compatible types (e.g., both numbers).\n        *   Convert the string to an integer before passing it: `add(10, int(\"5\"))`.\n        *   (For a more robust `add` function) Implement type checking or `try-except` blocks within `add` to handle unexpected types gracefully.\n\n2.  **Unhandled `ZeroDivisionError` in `divide` function**\n    *   **Description:** The `divide` function performs division without checking if the divisor (`b`) is zero. If `b` is `0`, a `ZeroDivisionError` will occur, causing the program to crash. The comment in the code even explicitly highlights this issue (`# Pas de gestion de la division par zéro !`).\n    *   **Code Line:** `return a/b` within `def divide(a, b):`\n    *   **Impact:** Any call to `divide(x, 0)` will crash the program.\n    *   **Correction Idea:** Implement error handling using a `try-except` block or an `if` statement to check for `b == 0` before performing the division. For example:\n        ```python\n        def divide(a, b):\n            if b == 0:\n                print(\"Erreur: Division par zéro impossible!\")\n                return None # Or raise an error, or return a specific value\n            return a / b\n        ```\n\n### Summary of Bugs:\n\n1.  **`TypeError`** when calling `add(10, \"5\")` due to type mismatch.\n2.  **Potential `ZeroDivisionError`** in `divide(a, b)` if `b` is `0`."
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "729862df-f761-4594-ab63-54e1a13e6218",
+        "timestamp": "2026-01-08T13:53:17.423401",
+        "agent": "FixerAgent",
+        "model": "models/gemini-2.5-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": "You are a Python expert. Fix the following code based on the analysis plan.\nPLAN:\nLet's break down the code and identify the bugs.\n\n## Bugs Analysis\n\n1.  **Type Error in `add` function call**\n    *   **Description:** The `add` function is called with an integer (`10`) and a string (`\"5\"`). Python's `+` operator for `int` and `str` types results in a `TypeError` when you try to add them directly. The `add` function itself doesn't validate input types, allowing this error to propagate.\n    *   **Code Line:** `print(\"Resultat: \" + add(10, \"5\"))`\n    *   **Error Message (expected):** `TypeError: unsupported operand type(s) for +: 'int' and 'str'`\n    *   **Impact:** The program will crash at this line.\n    *   **Correction Idea:**\n        *   Ensure arguments passed to `add` are of compatible types (e.g., both numbers).\n        *   Convert the string to an integer before passing it: `add(10, int(\"5\"))`.\n        *   (For a more robust `add` function) Implement type checking or `try-except` blocks within `add` to handle unexpected types gracefully.\n\n2.  **Unhandled `ZeroDivisionError` in `divide` function**\n    *   **Description:** The `divide` function performs division without checking if the divisor (`b`) is zero. If `b` is `0`, a `ZeroDivisionError` will occur, causing the program to crash. The comment in the code even explicitly highlights this issue (`# Pas de gestion de la division par zéro !`).\n    *   **Code Line:** `return a/b` within `def divide(a, b):`\n    *   **Impact:** Any call to `divide(x, 0)` will crash the program.\n    *   **Correction Idea:** Implement error handling using a `try-except` block or an `if` statement to check for `b == 0` before performing the division. For example:\n        ```python\n        def divide(a, b):\n            if b == 0:\n                print(\"Erreur: Division par zéro impossible!\")\n                return None # Or raise an error, or return a specific value\n            return a / b\n        ```\n\n### Summary of Bugs:\n\n1.  **`TypeError`** when calling `add(10, \"5\")` due to type mismatch.\n2.  **Potential `ZeroDivisionError`** in `divide(a, b)` if `b` is `0`.\n\nCODE:\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)\n\nOutput ONLY the fixed Python code without markdown blocks.",
+            "output_response": "def add(a,b):\n    return a+b\n\ndef divide(a, b):\n    if b == 0:\n        print(\"Erreur: Division par zéro impossible!\")\n        return None\n    return a/b\n\nprint(\"Resultat: \" + str(add(10, int(\"5\"))))"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "05d2203e-cdac-45ca-b447-91143e1a6f81",
+        "timestamp": "2026-01-08T13:55:54.225275",
+        "agent": "System",
+        "model": "local",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "startup",
+            "output_response": "Target: ./sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "33e62539-1d56-409d-ab84-7bba2e37cf03",
+        "timestamp": "2026-01-08T13:56:05.989715",
+        "agent": "AuditorAgent",
+        "model": "models/gemini-2.5-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs:\n\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)",
+            "output_response": "Let's break down the code and identify the bugs.\n\n```python\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)\n```\n\nHere are the bugs:\n\n1.  **`divide` function: ZeroDivisionError Vulnerability**\n    *   **Description:** The `divide` function explicitly notes (in French: \"Pas de gestion de la division par zéro !\") that it does not handle the case where the divisor `b` is zero.\n    *   **Impact:** If `divide(x, 0)` is called, the program will crash with a `ZeroDivisionError`.\n    *   **Location:** `divide` function.\n    *   **Severity:** High (can crash the program).\n    *   **Solution:** Add a check for `b == 0` and handle it appropriately (e.g., raise a custom error, return `None`, return `float('inf')` for positive numerators, or print an error message).\n\n2.  **`add` function call within `print`: TypeError (int + str)**\n    *   **Description:** The `print` statement calls `add(10, \"5\")`. In Python, the `+` operator cannot directly add an integer (`10`) and a string (`\"5\"`).\n    *   **Impact:** This line will cause a `TypeError` (`unsupported operand type(s) for +: 'int' and 'str'`) when `add(10, \"5\")` is evaluated, crashing the program.\n    *   **Location:** The call `add(10, \"5\")` on the `print` line. The `add` function itself is not inherently buggy, but its *usage* here is incorrect given the types.\n    *   **Severity:** High (crashes the program).\n    *   **Solution:** Either ensure both arguments are integers (e.g., `add(10, 5)`) or convert the string to an integer before passing it (e.g., `add(10, int(\"5\"))`). If string concatenation was intended, both arguments should be strings (e.g., `add(\"10\", \"5\")` which would return `\"105\"`).\n\n3.  **`print` statement: Potential TypeError in String Concatenation**\n    *   **Description:** Even if `add(10, \"5\")` were fixed to return a number (e.g., `15`), the `print` statement would then attempt `\"Resultat: \" + 15`. Python does not allow direct concatenation of a string and an integer using the `+` operator.\n    *   **Impact:** If the previous bug were fixed by making `add` return an integer, this line would *still* cause a `TypeError` (`can only concatenate str (not \"int\") to str`).\n    *   **Location:** The `print` statement, specifically the `+` between `\"Resultat: \"` and the result of `add()`.\n    *   **Severity:** Medium (would cause a crash if the first bug on this line was partially fixed).\n    *   **Solution:** Convert the numerical result of `add` to a string before concatenating (e.g., `print(\"Resultat: \" + str(add(10, 5)))`) or use an f-string (e.g., `print(f\"Resultat: {add(10, 5)}\")`).\n\nIn summary, the code has a critical bug in `divide` related to zero, and a type error that prevents the `print` statement from executing correctly, with a secondary type error awaiting if the first type error is resolved in a certain way."
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "f337c1c6-fd76-4a5b-9ef3-d78bb3f9abfe",
+        "timestamp": "2026-01-08T13:56:11.614450",
+        "agent": "FixerAgent",
+        "model": "models/gemini-2.5-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": "You are a Python expert. Fix the following code based on the analysis plan.\nPLAN:\nLet's break down the code and identify the bugs.\n\n```python\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)\n```\n\nHere are the bugs:\n\n1.  **`divide` function: ZeroDivisionError Vulnerability**\n    *   **Description:** The `divide` function explicitly notes (in French: \"Pas de gestion de la division par zéro !\") that it does not handle the case where the divisor `b` is zero.\n    *   **Impact:** If `divide(x, 0)` is called, the program will crash with a `ZeroDivisionError`.\n    *   **Location:** `divide` function.\n    *   **Severity:** High (can crash the program).\n    *   **Solution:** Add a check for `b == 0` and handle it appropriately (e.g., raise a custom error, return `None`, return `float('inf')` for positive numerators, or print an error message).\n\n2.  **`add` function call within `print`: TypeError (int + str)**\n    *   **Description:** The `print` statement calls `add(10, \"5\")`. In Python, the `+` operator cannot directly add an integer (`10`) and a string (`\"5\"`).\n    *   **Impact:** This line will cause a `TypeError` (`unsupported operand type(s) for +: 'int' and 'str'`) when `add(10, \"5\")` is evaluated, crashing the program.\n    *   **Location:** The call `add(10, \"5\")` on the `print` line. The `add` function itself is not inherently buggy, but its *usage* here is incorrect given the types.\n    *   **Severity:** High (crashes the program).\n    *   **Solution:** Either ensure both arguments are integers (e.g., `add(10, 5)`) or convert the string to an integer before passing it (e.g., `add(10, int(\"5\"))`). If string concatenation was intended, both arguments should be strings (e.g., `add(\"10\", \"5\")` which would return `\"105\"`).\n\n3.  **`print` statement: Potential TypeError in String Concatenation**\n    *   **Description:** Even if `add(10, \"5\")` were fixed to return a number (e.g., `15`), the `print` statement would then attempt `\"Resultat: \" + 15`. Python does not allow direct concatenation of a string and an integer using the `+` operator.\n    *   **Impact:** If the previous bug were fixed by making `add` return an integer, this line would *still* cause a `TypeError` (`can only concatenate str (not \"int\") to str`).\n    *   **Location:** The `print` statement, specifically the `+` between `\"Resultat: \"` and the result of `add()`.\n    *   **Severity:** Medium (would cause a crash if the first bug on this line was partially fixed).\n    *   **Solution:** Convert the numerical result of `add` to a string before concatenating (e.g., `print(\"Resultat: \" + str(add(10, 5)))`) or use an f-string (e.g., `print(f\"Resultat: {add(10, 5)}\")`).\n\nIn summary, the code has a critical bug in `divide` related to zero, and a type error that prevents the `print` statement from executing correctly, with a secondary type error awaiting if the first type error is resolved in a certain way.\n\nCODE:\ndef add(a,b):\n    return a+b\n\ndef divide(a, b):\n    # Pas de gestion de la division par zéro !\n    return a/b\n\nprint(\"Resultat: \" + add(10, \"5\")) # Erreur de type (int + string)\n\nOutput ONLY the fixed Python code without markdown blocks.",
+            "output_response": "def add(a,b):\n    return a+b\n\ndef divide(a, b):\n    if b == 0:\n        raise ValueError(\"Cannot divide by zero.\")\n    return a/b\n\nprint(f\"Resultat: {add(10, int('5'))}\")"
+        },
+        "status": "SUCCESS"
     }
 ]

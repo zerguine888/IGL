@@ -43,6 +43,9 @@ def main():
         for fname in files:
             if not fname.endswith(".py"):
                 continue
+            # Skip already-fixed files
+            if fname.startswith("fixed_"):
+                continue
             full_path = os.path.join(root, fname)
             print(f"Analysing {full_path}...")
 

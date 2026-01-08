@@ -44,7 +44,9 @@ def main():
         if hasattr(genai, "list_models"):
             tried = True
             models = genai.list_models()
-            print("list_models() result:\n", models)
+            print("list_models() result:")
+            for m in models:
+                print(f"- {m.name}")
     except Exception as e:
         print(f"list_models() call failed: {e}")
 
