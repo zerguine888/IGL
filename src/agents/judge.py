@@ -22,9 +22,9 @@ class JudgeAgent:
         for attempt in range(3):
             try:
                 response = self.model.generate_content(prompt)
-              
-                test_code = response.text.replace("```python", "").replace("```", "").strip().encode("utf-8", "ignore").decode()
-
+                # ✅ Remove markdown and control characters
+                test_code = response.text.replace("```python", "").replace("```", "").strip()
+                test_code = ''.join(ch for ch in test_code if ord(ch) >= 32 or ch in '\n\t')  # removes <ctrl63> and other control chars
                 return test_code
             except Exception as e:
                 print(f"⚠️ Gemini test generation error ({e}). Retry {attempt+1}/3 in 10s...")
