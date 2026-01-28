@@ -22,7 +22,9 @@ class JudgeAgent:
         for attempt in range(3):
             try:
                 response = self.model.generate_content(prompt)
-                test_code = response.text.replace("```python", "").replace("```", "").strip()
+              
+                test_code = response.text.replace("```python", "").replace("```", "").strip().encode("utf-8", "ignore").decode()
+
                 return test_code
             except Exception as e:
                 print(f"⚠️ Gemini test generation error ({e}). Retry {attempt+1}/3 in 10s...")
