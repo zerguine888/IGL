@@ -7,14 +7,14 @@ from src.utils.logger import log_experiment, ActionType
 from src.tools import read_file, write_file
 from src.agents.auditor import AuditorAgent
 from src.agents.fixer import FixerAgent
-
+from src.agents.judge import JudgeAgent
 
 load_dotenv()
-
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--target_dir", type=str, required=True)
+    parser.add_argument("--max_iterations", type=int, default=5, help="Maximum iterations for JudgeAgent")
     args = parser.parse_args()
 
     if not os.path.exists(args.target_dir):
@@ -28,9 +28,9 @@ def main():
 
     print(f"🚀 DEMARRAGE SUR : {args.target_dir}")
 
-    # Initialize agents
     auditor = AuditorAgent(api_key)
     fixer = FixerAgent(api_key)
+    judge = JudgeAgent(api_key)
 
     # Log startup
     try:
@@ -38,16 +38,16 @@ def main():
     except Exception:
         pass
 
-    # Walk target dir and process .py files
+    # Process only original .py files
     for root, _dirs, files in os.walk(args.target_dir):
         for fname in files:
             if not fname.endswith(".py"):
                 continue
-            # Skip already-fixed files
-            if fname.startswith("fixed_"):
+            if fname.startswith("fixed_") or fname.startswith("fixed_temp_") or fname.startswith("generated_"):
                 continue
+
             full_path = os.path.join(root, fname)
-            print(f"Analysing {full_path}...")
+            print(f"\n🔹 Processing {full_path}...")
 
             try:
                 analysis = auditor.analyze(full_path)
@@ -61,20 +61,30 @@ def main():
                 continue
 
             try:
-                fixed = fixer.fix(original_code, analysis)
+                fixed_code = fixer.fix(original_code, analysis)
             except Exception as e:
-                fixed = f"<fixer-error> {e}"
+                print(f"Fixer failed: {e}")
+                fixed_code = original_code
 
-            out_name = f"fixed_{os.path.basename(fname)}"
-            out_path = os.path.join("sandbox", out_name)
-            try:
-                write_file(out_path, fixed)
-                print(f"Wrote fixed file to {out_path}")
-            except Exception as e:
-                print(f"Failed to write fixed file {out_path}: {e}")
+            # ✅ Write temp fixed code in sandbox
+            sandbox_temp_dir = os.path.join("sandbox", f"temp_{fname}")
+            os.makedirs(sandbox_temp_dir, exist_ok=True)
+            temp_fixed_path = os.path.join(sandbox_temp_dir, f"fixed_temp_{fname}")
+            write_file(temp_fixed_path, fixed_code)
 
-    print("✅ MISSION_COMPLETE")
+            # ✅ Judge test folder per file: sandbox/temp_<file>/test_<file>
+            judge_test_dir = os.path.join(sandbox_temp_dir, f"test_{fname}")
+            final_fixed_path = judge.judge(temp_fixed_path, fixer, max_iterations=args.max_iterations, base_dir_override=judge_test_dir)
 
+            # Save final fixed code to sandbox
+            sandbox_dir = os.path.join("sandbox")
+            os.makedirs(sandbox_dir, exist_ok=True)
+            final_output_path = os.path.join(sandbox_dir, f"final_fixed_{fname}")
+            write_file(final_output_path, read_file(final_fixed_path))
+
+            print(f"✅ Final fixed code saved to: {final_output_path}")
+
+    print("\n🎯 ALL FILES PROCESSED.")
 
 if __name__ == "__main__":
     main()
