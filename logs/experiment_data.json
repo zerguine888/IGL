@@ -2611,5 +2611,161 @@
             "output_response": "def calculate_average(numbers):\n    total = 0\n    if not numbers:\n        return 0\n\n    for num in numbers:\n        total += num\n    \n    average = total / len(numbers)\n    return average"
         },
         "status": "SUCCESS"
+    },
+    {
+        "id": "3090ffab-27b8-4f99-a189-d603ea319602",
+        "timestamp": "2026-02-28T22:16:33.129076",
+        "agent": "System",
+        "model": "local",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "startup",
+            "output_response": "Target: sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "b074ea9b-9b7a-4c50-b810-57730aec13aa",
+        "timestamp": "2026-02-28T22:17:04.728394",
+        "agent": "AuditorAgent",
+        "model": "models/gemini-2.5-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs:\n\ndef calculate_average(numbers):\n    total = 0\n    for num in numbers:\n        total =+ num  # Bug 1\n    \n    average = total / len(numbers) # Bug 2\n    return Average # Bug 3\n\n# Test case\nmy_list = []\nprint(\"The average is:\", calculate_average(my_list))",
+            "output_response": ""
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "9f18f773-ff16-4358-b90a-45ac25132e8f",
+        "timestamp": "2026-02-28T22:21:57.691471",
+        "agent": "System",
+        "model": "local",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "startup",
+            "output_response": "Target: sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "51a0f015-32f7-4cf7-85bc-7e6a2614ae2b",
+        "timestamp": "2026-02-28T22:26:18.763899",
+        "agent": "System",
+        "model": "local",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "startup",
+            "output_response": "Target: sandbox"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "cd1bc7ca-f58c-4b15-b0ba-0016d43e8609",
+        "timestamp": "2026-02-28T22:26:26.398084",
+        "agent": "AuditorAgent",
+        "model": "models/gemini-2.5-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs:\n\ndef calculate_average(numbers):\n    total = 0\n    for num in numbers:\n        total =+ num  # Bug 1\n    \n    average = total / len(numbers) # Bug 2\n    return Average # Bug 3\n\n# Test case\nmy_list = []\nprint(\"The average is:\", calculate_average(my_list))",
+            "output_response": "The provided Python code has several bugs:\n\n1.  **Incorrect Accumulation Operator (Bug 1):**\n    *   **Line:** `total =+ num`\n    *   **Problem:** The operator ` =+ ` is not the correct shorthand for adding to a variable. It's interpreted as `total = (+num)`, meaning `total` is simply assigned the value of `num` in each iteration, overwriting the previous value. It doesn't accumulate the sum.\n    *   **Expected:** `total += num` (add `num` to `total`)\n    *   **Consequence:** The `total` will incorrectly store only the last number in the list, not the sum of all numbers. If the list is empty, `total` remains `0`.\n\n2.  **`ZeroDivisionError` for Empty List (Bug 2):**\n    *   **Line:** `average = total / len(numbers)`\n    *   **Problem:** If the input `numbers` list is empty (`[]`), `len(numbers)` will return `0`. Attempting to divide `total` (which would be `0` for an empty list) by `0` will raise a `ZeroDivisionError`.\n    *   **Consequence:** The code crashes when an empty list is provided, as shown by the test case `my_list = []`.\n\n3.  **`NameError` due to Case Sensitivity (Bug 3):**\n    *   **Line:** `return Average`\n    *   **Problem:** Python is case-sensitive. The variable where the average is stored is named `average` (lowercase 'a'). The function attempts to return `Average` (uppercase 'A'), which is an undefined name within its scope.\n    *   **Expected:** `return average`\n    *   **Consequence:** Even if the previous bugs were fixed and a valid average was calculated, this line would cause a `NameError` to be raised.\n\n---\n\n**Summary of Bugs:**\n\n1.  `total =+ num` should be `total += num`.\n2.  No handling for an empty `numbers` list, leading to `ZeroDivisionError`.\n3.  `return Average` should be `return average` due to case sensitivity."
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "909c659c-17c3-41de-ba61-bf4f4a8d382d",
+        "timestamp": "2026-02-28T22:26:28.825134",
+        "agent": "FixerAgent",
+        "model": "models/gemini-2.5-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": "You are a Python expert. Fix the following code based on the analysis plan.\nPLAN:\nThe provided Python code has several bugs:\n\n1.  **Incorrect Accumulation Operator (Bug 1):**\n    *   **Line:** `total =+ num`\n    *   **Problem:** The operator ` =+ ` is not the correct shorthand for adding to a variable. It's interpreted as `total = (+num)`, meaning `total` is simply assigned the value of `num` in each iteration, overwriting the previous value. It doesn't accumulate the sum.\n    *   **Expected:** `total += num` (add `num` to `total`)\n    *   **Consequence:** The `total` will incorrectly store only the last number in the list, not the sum of all numbers. If the list is empty, `total` remains `0`.\n\n2.  **`ZeroDivisionError` for Empty List (Bug 2):**\n    *   **Line:** `average = total / len(numbers)`\n    *   **Problem:** If the input `numbers` list is empty (`[]`), `len(numbers)` will return `0`. Attempting to divide `total` (which would be `0` for an empty list) by `0` will raise a `ZeroDivisionError`.\n    *   **Consequence:** The code crashes when an empty list is provided, as shown by the test case `my_list = []`.\n\n3.  **`NameError` due to Case Sensitivity (Bug 3):**\n    *   **Line:** `return Average`\n    *   **Problem:** Python is case-sensitive. The variable where the average is stored is named `average` (lowercase 'a'). The function attempts to return `Average` (uppercase 'A'), which is an undefined name within its scope.\n    *   **Expected:** `return average`\n    *   **Consequence:** Even if the previous bugs were fixed and a valid average was calculated, this line would cause a `NameError` to be raised.\n\n---\n\n**Summary of Bugs:**\n\n1.  `total =+ num` should be `total += num`.\n2.  No handling for an empty `numbers` list, leading to `ZeroDivisionError`.\n3.  `return Average` should be `return average` due to case sensitivity.\n\nCODE:\ndef calculate_average(numbers):\n    total = 0\n    for num in numbers:\n        total =+ num  # Bug 1\n    \n    average = total / len(numbers) # Bug 2\n    return Average # Bug 3\n\n# Test case\nmy_list = []\nprint(\"The average is:\", calculate_average(my_list))\n\nOutput ONLY the fixed Python code without markdown blocks.",
+            "output_response": "def calculate_average(numbers):\n    total = 0\n    for num in numbers:\n        total += num # Fixed Bug 1: Correct accumulation operator\n    \n    # Fixed Bug 2: Handle empty list to prevent ZeroDivisionError\n    if len(numbers) == 0:\n        return 0 # Return 0 for an empty list's average, or choose another sensible default (e.g., None)\n    \n    average = total / len(numbers)\n    return average # Fixed Bug 3: Corrected variable name to match case\n\n# Test case\nmy_list = []\nprint(\"The average is:\", calculate_average(my_list))"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "713d2fc3-4674-4016-89a9-5b4eaf13a88c",
+        "timestamp": "2026-02-28T23:32:42.388492",
+        "agent": "System",
+        "model": "local",
+        "action": "DEBUG",
+        "details": {
+            "input_prompt": "startup",
+            "output_response": "Target: sandbox/hidden_dataset"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "78e7d1b4-6d1f-4074-b241-b1ab133626f4",
+        "timestamp": "2026-02-28T23:32:58.233601",
+        "agent": "AuditorAgent",
+        "model": "models/gemini-2.5-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs:\n\ndef calculate_sum(a, b)  # Manque le deux-points\n    return a + b",
+            "output_response": "The provided Python code has two primary bugs, both related to Python's syntax for defining functions and code blocks.\n\nHere are the bugs:\n\n1.  **Missing Colon after Function Definition:**\n    *   **Description:** In Python, a colon (`:`) is mandatory at the end of a `def` statement (and other control flow statements like `if`, `for`, `while`) to indicate the start of an indented code block. The provided code lacks this colon.\n    *   **Error Type:** `SyntaxError: invalid syntax`\n    *   **Line:** `def calculate_sum(a, b)`\n\n2.  **Missing Indentation for the Function Body:**\n    *   **Description:** All statements that belong to a function's body must be indented. Python uses indentation to define code blocks. The `return a + b` line is not indented, meaning it's not considered part of the `calculate_sum` function.\n    *   **Error Type:** `IndentationError: expected an indented block` (This error would typically occur *after* the colon syntax error is fixed, as the interpreter would then expect an indented block.)\n    *   **Line:** `return a + b`\n\n---\n\n**Corrected Code:**\n\n```python\ndef calculate_sum(a, b): # Colon added\n    return a + b         # Indented\n```"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "f6c81237-e02b-4912-ae15-0ac24f66e130",
+        "timestamp": "2026-02-28T23:33:02.316163",
+        "agent": "FixerAgent",
+        "model": "models/gemini-2.5-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": "You are a Python expert. Fix the following code based on the analysis plan.\nPLAN:\nThe provided Python code has two primary bugs, both related to Python's syntax for defining functions and code blocks.\n\nHere are the bugs:\n\n1.  **Missing Colon after Function Definition:**\n    *   **Description:** In Python, a colon (`:`) is mandatory at the end of a `def` statement (and other control flow statements like `if`, `for`, `while`) to indicate the start of an indented code block. The provided code lacks this colon.\n    *   **Error Type:** `SyntaxError: invalid syntax`\n    *   **Line:** `def calculate_sum(a, b)`\n\n2.  **Missing Indentation for the Function Body:**\n    *   **Description:** All statements that belong to a function's body must be indented. Python uses indentation to define code blocks. The `return a + b` line is not indented, meaning it's not considered part of the `calculate_sum` function.\n    *   **Error Type:** `IndentationError: expected an indented block` (This error would typically occur *after* the colon syntax error is fixed, as the interpreter would then expect an indented block.)\n    *   **Line:** `return a + b`\n\n---\n\n**Corrected Code:**\n\n```python\ndef calculate_sum(a, b): # Colon added\n    return a + b         # Indented\n```\n\nCODE:\ndef calculate_sum(a, b)  # Manque le deux-points\n    return a + b\n\nOutput ONLY the fixed Python code without markdown blocks.",
+            "output_response": "def calculate_sum(a, b):\n    return a + b"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "ca1c10b9-7aa8-442a-bd07-a4163be39054",
+        "timestamp": "2026-02-28T23:33:14.230506",
+        "agent": "AuditorAgent",
+        "model": "models/gemini-2.5-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs:\n\ndef count_down(n):\n    while n > 0:\n        print(n)\n        n += 1 # Bug : n augmente au lieu de diminuer",
+            "output_response": "Let's analyze the provided Python code:\n\n```python\ndef count_down(n):\n    while n > 0:\n        print(n)\n        n += 1 # Bug : n augmente au lieu de diminuer\n```\n\nHere's the bug analysis:\n\n**1. Critical Bug: Infinite Loop (Incorrect decrement)**\n\n*   **Location:** `n += 1`\n*   **Description:** The function is named `count_down`, implying that the value of `n` should decrease. However, inside the `while` loop, `n` is incremented (`n += 1`) instead of decremented.\n*   **Consequence:**\n    *   If `n` starts as a positive number (e.g., `count_down(5)`), `n` will continuously increase (5, 6, 7, 8...). Since `n` will always be greater than 0, the condition `n > 0` will always remain true. This leads to an **infinite loop**, printing numbers indefinitely until the program is manually stopped or runs out of memory.\n    *   The `print(n)` statement will execute indefinitely.\n*   **Proposed Fix:** Change `n += 1` to `n -= 1`.\n\n**Corrected Code (Illustrative):**\n\n```python\ndef count_down_fixed(n):\n    while n > 0:\n        print(n)\n        n -= 1 # Corrected: n decreases\n```"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "1c5907a2-d6b9-40d6-86f0-d6bea39df3fe",
+        "timestamp": "2026-02-28T23:33:16.364009",
+        "agent": "FixerAgent",
+        "model": "models/gemini-2.5-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": "You are a Python expert. Fix the following code based on the analysis plan.\nPLAN:\nLet's analyze the provided Python code:\n\n```python\ndef count_down(n):\n    while n > 0:\n        print(n)\n        n += 1 # Bug : n augmente au lieu de diminuer\n```\n\nHere's the bug analysis:\n\n**1. Critical Bug: Infinite Loop (Incorrect decrement)**\n\n*   **Location:** `n += 1`\n*   **Description:** The function is named `count_down`, implying that the value of `n` should decrease. However, inside the `while` loop, `n` is incremented (`n += 1`) instead of decremented.\n*   **Consequence:**\n    *   If `n` starts as a positive number (e.g., `count_down(5)`), `n` will continuously increase (5, 6, 7, 8...). Since `n` will always be greater than 0, the condition `n > 0` will always remain true. This leads to an **infinite loop**, printing numbers indefinitely until the program is manually stopped or runs out of memory.\n    *   The `print(n)` statement will execute indefinitely.\n*   **Proposed Fix:** Change `n += 1` to `n -= 1`.\n\n**Corrected Code (Illustrative):**\n\n```python\ndef count_down_fixed(n):\n    while n > 0:\n        print(n)\n        n -= 1 # Corrected: n decreases\n```\n\nCODE:\ndef count_down(n):\n    while n > 0:\n        print(n)\n        n += 1 # Bug : n augmente au lieu de diminuer\n\nOutput ONLY the fixed Python code without markdown blocks.",
+            "output_response": "def count_down(n):\n    while n > 0:\n        print(n)\n        n -= 1"
+        },
+        "status": "SUCCESS"
+    },
+    {
+        "id": "dc46bc69-3fbc-4f8a-999a-12be962c47af",
+        "timestamp": "2026-02-28T23:33:57.277100",
+        "agent": "AuditorAgent",
+        "model": "models/gemini-2.5-flash",
+        "action": "CODE_ANALYSIS",
+        "details": {
+            "input_prompt": "Analyze this code and list bugs:\n\nx = 10\n# Variable mal nommée, pas de docstring, logique inutile\ndef f(z):\n    if z > 0:\n        if z < 100:\n            return True\n    return False",
+            "output_response": ""
+        },
+        "status": "FAILURE"
+    },
+    {
+        "id": "95a478b1-5542-4b3d-8d52-e3e033ac86ec",
+        "timestamp": "2026-02-28T23:34:05.324872",
+        "agent": "FixerAgent",
+        "model": "models/gemini-2.5-flash",
+        "action": "FIX",
+        "details": {
+            "input_prompt": "You are a Python expert. Fix the following code based on the analysis plan.\nPLAN:\n\n\nCODE:\nx = 10\n# Variable mal nommée, pas de docstring, logique inutile\ndef f(z):\n    if z > 0:\n        if z < 100:\n            return True\n    return False\n\nOutput ONLY the fixed Python code without markdown blocks.",
+            "output_response": "x = 10\ndef f(value):\n    \"\"\"Checks if a given number is strictly between 0 and 100.\n\n    Args:\n        value (int or float): The number to check.\n\n    Returns:\n        bool: True if the number is greater than 0 and less than 100, False otherwise.\n    \"\"\"\n    return 0 < value < 100"
+        },
+        "status": "SUCCESS"
     }
 ]
