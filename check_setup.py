@@ -1,4 +1,5 @@
 # check_setup.py
+# Hi
 import sys
 import os
 
